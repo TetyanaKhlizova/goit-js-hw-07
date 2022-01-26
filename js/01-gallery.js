@@ -39,12 +39,20 @@ const htmlGallery = galleryItems.reduce((acc, { preview, original, description }
     return acc;
 },'');
 containerGallery.insertAdjacentHTML('beforeend', htmlGallery);
-
- containerGallery.addEventListener('click', onImgClick);
- function onImgClick(event) {
+containerGallery.addEventListener('click', onImgClick);
+ 
+function onImgClick(event) {
+  event.preventDefault();
      if (event.target.nodeName !== 'IMG') {
          return;
     }
-     console.log(event.target);
- }
-//  console.log(galleryItems);
+   console.log(event.target);
+  const getLargeImg = event.target.dataset.source;
+  
+  console.log(getLargeImg);
+
+  const instance = basicLightbox.create(`<img src = ${getLargeImg}>`);
+  instance.show();
+}
+ 
+  console.log(galleryItems);
