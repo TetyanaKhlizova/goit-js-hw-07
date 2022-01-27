@@ -2,8 +2,8 @@ import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
 const containerGallery = document.querySelector('ul.gallery');
-const htmlGallery = galleryItems.reduce((acc, {preview, description}) => {
-    acc += `<li> <a class="gallery__item" href="large-image.jpg">
+const htmlGallery = galleryItems.reduce((acc, {preview,  original, description}) => {
+    acc += `<li> <a class="gallery__item" href='${original}'>
   <img class="gallery__image"
    src='${preview}',
     alt='${description}', />
@@ -22,5 +22,5 @@ function onImgClick(event) {
     
       
 }
-let lightbox = new SimpleLightbox('.gallery ', '${htmlGallery}');
+let lightbox = new SimpleLightbox('.gallery a ', {caphionsDelay: 250, captionsData: 'alt'});
 console.log(galleryItems);
